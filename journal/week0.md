@@ -26,3 +26,6 @@
 
 Link to conceptual diagram
 https://lucid.app/lucidchart/90340226-05bd-40d7-8aaa-267ca75aa538/edit?invitationId=inv_1b134b5f-959d-4cb9-8a29-dcdb6b25d3d0
+
+Link to logical diagram
+https://lucid.app/lucidchart/90295d1e-52d6-4852-8ed0-a565d7e86ebd/edit?invitationId=inv_e9086459-ee41-4b24-9c7f-da104f9f062e
