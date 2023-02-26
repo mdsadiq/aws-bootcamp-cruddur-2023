@@ -14,4 +14,8 @@ Ran a docker instance locally [run docker locally](./assets/week-1.PNG)
 
 converted backend flask to multi stage pipeline [multi stage pipeline](./assets/week-1-multi-stage.JPG)
 
-implemented healthcheck on frontend
+install and run docker conatiner in ec2 [docker running in ec2, aws shell](./assets/week-1-ec2-docker.JPG)
+
+implemented healthcheck on frontend 
+
+Read best practices and implemented them, for ex. multi stage, layers for installing library, using non root user etc
