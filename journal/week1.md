@@ -12,4 +12,6 @@ deployed the backend image to dockerhub https://hub.docker.com/r/mdsadiq/experim
 
 Ran a docker instance locally [run docker locally](./assets/week-1.PNG)
 
+converted backend flask to multi stage pipeline [multi stage pipeline](./assets/week-1-multi-stage.JPG)
 
+implemented healthcheck on frontend
