@@ -14,9 +14,33 @@ from services.messages import *
 from services.create_message import *
 from services.show_activity import *
 
+# honeycomb - opentelemetry
+from opentelemetry import trace
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter
+
+# honeycomb - Initialize tracing and an exporter that can send data to Honeycomb
+provider = TracerProvider()
+processor = BatchSpanProcessor(OTLPSpanExporter())
+provider.add_span_processor(processor)
+
+# prints the events to log
+simple_processor = SimpleSpanProcessor(OTLPSpanExporter())
+provider.add_span_processor(simple_processor)
+
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
+
 app = Flask(__name__)
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+
 origins = [frontend, backend]
 cors = CORS(
   app, 
