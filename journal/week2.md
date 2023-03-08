@@ -15,5 +15,7 @@ The 3 pillars of observability and their overlap
 
 [xray subsegment](./assets/week-2-subsegment.JPG)
 
+[custom instrumentation to Honeycomb to add more attributes](./assets/week-2-honeycomb-with-userId.JPG)
+
 
 ### Homework
