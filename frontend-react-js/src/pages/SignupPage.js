@@ -3,7 +3,7 @@ import React from "react";
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
 
-// [TODO] Authenication
+import { Auth } from 'aws-amplify';
 import Cookies from 'js-cookie'
 
 export default function SignupPage() {
@@ -11,20 +11,35 @@ export default function SignupPage() {
   // Username is Eamil
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
+  const [phone, setPhone] = React.useState(undefined);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
 
   const onsubmit = async (event) => {
     event.preventDefault();
-    console.log('SignupPage.onsubmit')
-    // [TODO] Authenication
-    Cookies.set('user.name', name)
-    Cookies.set('user.username', username)
-    Cookies.set('user.email', email)
-    Cookies.set('user.password', password)
-    Cookies.set('user.confirmation_code',1234)
-    window.location.href = `/confirm?email=${email}`
+    setErrors('');
+    try {
+      const { user } = await Auth.signUp({
+          username,
+          password,
+          attributes: {
+            name,
+            email,          // optional
+            phone_number:phone,   // optional - E.164 number convention
+              // other custom attributes 
+          },
+          autoSignIn: { // optional - enables auto sign in after user is confirmed
+              enabled: true,
+          }
+      })
+      // console.log(user);
+      window.location.href = `/confirm?email=${email}`
+      console.log(user);
+  } catch (error) {
+      console.log('error signing up:', error);
+      setErrors(error.message)
+  }
     return false
   }
 
