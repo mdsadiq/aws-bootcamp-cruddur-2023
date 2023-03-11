@@ -11,7 +11,6 @@ export default function SignupPage() {
   // Username is Eamil
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
-  // const [phone, setPhone] = React.useState(undefined);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
@@ -21,12 +20,12 @@ export default function SignupPage() {
     setErrors('');
     try {
       const { user } = await Auth.signUp({
-          username,
+          username: email,
           password,
           attributes: {
             name,
             email,          // optional
-            // phone_number:phone,   // optional - E.164 number convention
+            preferred_username: username,
               // other custom attributes 
           },
           autoSignIn: { // optional - enables auto sign in after user is confirmed
