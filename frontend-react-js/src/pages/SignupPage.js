@@ -11,7 +11,7 @@ export default function SignupPage() {
   // Username is Eamil
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [phone, setPhone] = React.useState(undefined);
+  // const [phone, setPhone] = React.useState(undefined);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
@@ -26,7 +26,7 @@ export default function SignupPage() {
           attributes: {
             name,
             email,          // optional
-            phone_number:phone,   // optional - E.164 number convention
+            // phone_number:phone,   // optional - E.164 number convention
               // other custom attributes 
           },
           autoSignIn: { // optional - enables auto sign in after user is confirmed

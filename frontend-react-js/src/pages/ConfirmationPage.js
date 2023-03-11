@@ -44,9 +44,16 @@ export default function ConfirmationPage() {
   const onsubmit = async (event) => {
     event.preventDefault();
     console.log('ConfirmationPage.onsubmit')
+    const isCodeString = Number.isNaN(Number(code));
     try {
-      await Auth.confirmSignUp(email, code);
-      window.location.href = "/"
+      await Auth.confirmSignUp(email, code).then(r => {
+        console.log(r)
+        window.location.href = "/"
+      }).catch(err => {
+        console.log(err)
+      })
+      // await Auth.confirmSignUp(email, isCodeString ? code: Number(code));
+      
     } catch (error) {
       setErrors(error.message)
     }
